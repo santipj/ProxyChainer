@@ -1,96 +1,87 @@
-# ProxyChainer
+# 🔗 ProxyChainer - Herramienta Avanzada de Encadenamiento de Proxies
 
-ProxyChainer is a Python script similar to ProxyChains that allows you to force network connections through a chain of proxies. It supports HTTP and SOCKS proxies and provides a simple interface for users to specify which applications should use the proxy chain.
+![Python](https://img.shields.io/badge/python-3.6+-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## Installation
+ProxyChainer es una herramienta Python para encadenar múltiples proxies de diferentes tipos (HTTP, SOCKS4, SOCKS5) y ejecutar comandos a través de ellos. Incluye funcionalidad especial para integración con Tor y cambio automático de identidad.
 
-1. Make sure you have Python 3.6+ installed
-2. Install the required dependencies:
+## ✨ Características Principales
 
-```
-pip install -r requirements.txt
-```
+- ✅ Soporte para múltiples tipos de proxy (HTTP, SOCKS4, SOCKS5)
+- 🔄 Tres modos de encadenamiento: estricto, dinámico y aleatorio
+- 🕵️‍♂️ Integración con Tor (cambio de identidad automático)
+- 📝 Configuración mediante archivo fácil de editar
+- 🌐 Verificación de IP actual
+- ⚡ Ejecución de comandos a través de la cadena de proxies
+- 🔄 Validación y configuración automática de torrc
 
-3. Make the script executable (Linux/macOS):
+## 🚀 Instalación Rápida
 
-```
-chmod +x proxychainer.py
-```
+1. **Clona el repositorio**:
+   ```bash
+   git clone https://github.com/tuusuario/proxychainer.git
+   cd proxychainer
+   
+2. **Instala las dependencias:**
+   ```bash
+   pip install pysocks requests configparser
 
-## Configuration
+2. **Configura Tor (opcional, solo si quieres usar Tor):**
+   ```bash
+   sudo apt install tor  # Para Debian/Ubuntu
+   brew install tor     # Para macOS
 
-ProxyChainer uses a configuration file located at `~/.proxychainer.conf` by default. You can specify a different configuration file using the `-f` option.
+⚙️ Configuración
+El archivo de configuración por defecto se crea automáticamente en ~/.proxychainer.conf con este formato:
+  ```bash
+  [ProxyChainer]
+  chain_type = strict  # strict, dynamic, or random
+  quiet_mode = off
+  proxy_dns = on
+  
+  [ProxyList]
+  proxy1 = socks5 127.0.0.1 9050
+  proxy2 = http 192.168.1.1 8080
+  ```
 
-The configuration file has the following format:
+🛠 Uso Básico
+Ejecutar un comando a través de los proxies:
+```bash
+  python3 proxychainer.py --command "curl ifconfig.me"
+  ```
 
-```ini
-[ProxyChainer]
-chain_type = strict
-quiet_mode = off
-proxy_dns = on
+Cambiar identidad de Tor manualmente:
+```bash
+  python3 proxychainer.py --new-tor-identity
+  ```
 
-[ProxyList]
-proxy1 = socks5 127.0.0.1 9050
-proxy2 = http 192.168.1.1 8080
-```
+Modo interactivo con intervalo de cambio automático:
+```bash
+  python3 proxychainer.py --interactive
+  ```
 
-### Configuration Options
+📌 Opciones Disponibles
+Opción	Descripción
+--config	Ruta al archivo de configuración personalizado
+--quiet	Modo silencioso (sin salida)
+--command	Comando a ejecutar a través de los proxies
+--new-tor-identity	Cambia la identidad de Tor
+--interactive	Modo interactivo con cambio periódico
+🔄 Modos de Encadenamiento
+Strict Chain: Los proxies se usan en orden secuencial estricto
 
-- `chain_type`: The type of proxy chaining to use (strict, dynamic, or random)
-- `quiet_mode`: Whether to suppress output messages
-- `proxy_dns`: Whether to proxy DNS requests
+Dynamic Chain: Selección inteligente basada en rendimiento
 
-### Proxy List
+Random Chain: Selección aleatoria de proxies
 
-The proxy list section contains the proxies to use in the chain. Each proxy is specified in the format:
+🤝 Contribuciones
+¡Contribuciones son bienvenidas! Por favor abre un issue o envía un PR para:
 
-```
-proxy_name = proxy_type host port
-```
+Reportar bugs
 
-Where:
-- `proxy_name`: A unique name for the proxy
-- `proxy_type`: The type of proxy (http, socks4, or socks5)
-- `host`: The hostname or IP address of the proxy
-- `port`: The port number of the proxy
+Sugerir mejoras
 
-## Usage
+Añadir nuevas funcionalidades
 
-```
-python proxychainer.py [options] [command]
-```
-
-### Options
-
-- `-f, --config`: Path to the configuration file
-- `-q, --quiet`: Quiet mode
-- `-l, --list`: List the current proxy configuration
-
-### Examples
-
-List the current proxy configuration:
-
-```
-python proxychainer.py -l
-```
-
-Run a command through the proxy chain:
-
-```
-python proxychainer.py curl https://ifconfig.me
-```
-
-Use a specific configuration file:
-
-```
-python proxychainer.py -f /path/to/config.conf wget https://example.com
-```
-
-## Limitations
-
-- The current implementation only uses the first proxy in the chain for simplicity
-- Full proxy chaining requires a more complex implementation
-
-## License
-
-This project is licensed under the MIT License.
+📜 Licencia
+MIT - Ver LICENSE para más detalles.
