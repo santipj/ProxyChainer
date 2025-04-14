@@ -31,34 +31,34 @@ ProxyChainer es una herramienta Python para encadenar múltiples proxies de dife
    sudo apt install tor  # Para Debian/Ubuntu
    brew install tor     # Para macOS
 
-⚙️ Configuración
+⚙️ Configuración:
 El archivo de configuración por defecto se crea automáticamente en ~/.proxychainer.conf con este formato:
-  ```bash
-  [ProxyChainer]
-  chain_type = strict  # strict, dynamic, or random
-  quiet_mode = off
-  proxy_dns = on
-  
-  [ProxyList]
-  proxy1 = socks5 127.0.0.1 9050
-  proxy2 = http 192.168.1.1 8080
-  ```
+   ```bash
+   [ProxyChainer]
+   chain_type = strict  # strict, dynamic, or random
+   quiet_mode = off
+   proxy_dns = on
+   
+   [ProxyList]
+   proxy1 = socks5 127.0.0.1 9050
+   proxy2 = http 192.168.1.1 8080
+   ```
 
 🛠 Uso Básico
 Ejecutar un comando a través de los proxies:
-```bash
-  python3 proxychainer.py --command "curl ifconfig.me"
-  ```
+   ```bash
+   python3 proxychainer.py --command "curl ifconfig.me"
+   ```
 
 Cambiar identidad de Tor manualmente:
-```bash
-  python3 proxychainer.py --new-tor-identity
-  ```
+   ```bash
+   python3 proxychainer.py --new-tor-identity
+   ```
 
 Modo interactivo con intervalo de cambio automático:
-```bash
-  python3 proxychainer.py --interactive
-  ```
+   ```bash
+   python3 proxychainer.py --interactive
+   ```
 
 📌 Opciones Disponibles
 Opción	Descripción
