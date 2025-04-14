@@ -19,7 +19,7 @@ ProxyChainer es una herramienta Python para encadenar múltiples proxies de dife
 
 1. **Clona el repositorio**:
    ```bash
-   git clone https://github.com/tuusuario/proxychainer.git
+   git clone https://github.com/santipj/proxychainer.git
    cd proxychainer
    
 2. **Instala las dependencias:**
